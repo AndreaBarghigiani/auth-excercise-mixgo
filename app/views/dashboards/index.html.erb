@@ -1,0 +1,22 @@
+<div class="w-full max-w-lg mx-auto">
+	<h1 class="text-2xl font-semibold">This is the list of your posts</h1>
+
+	<% @posts.each do |post| %>
+		<div class="pb-3 mb-3 border-b border-gray-500">
+			<header class="mb-4">
+				<h3 class="text-lg">
+					<%= link_to post.title, post_path(post.id), class: "underline" %>
+				</h3>
+				<em>by <%= post.user.email %></em>
+			</header>
+
+			<section class="mb-4">
+				<%= post.body.truncate(160) %>
+			</section>
+
+			<footer>
+				<%= link_to "Edit", edit_post_path(post.id), class: "px-4 py-2 bg-emerald-800 text-white" %>
+			</footer>
+		</div> 
+	<% end if @posts.presence %>
+</div>

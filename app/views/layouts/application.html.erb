@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auth</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-300">
+		<header class="w-full h-full max-w-2xl mx-auto mb-5">
+			<ul class="flex justify-start">
+				<li class="mr-5 underline">
+					<%= link_to "All Posts", posts_path %>
+				</li>
+
+				<% if is_logged? %>
+					<li class="mr-5 underline">
+						<%= link_to "Your Posts", dashboards_path %>
+					</li>
+
+					<li class="mr-5 underline">
+						<%= link_to "New Post", new_post_path %>
+					</li>
+				<% else %>
+					<li class="mr-5 underline">
+						<%= link_to "Log In", new_login_path %>
+					</li>
+
+					<li class="mr-5 underline">
+						<%= link_to "Register", new_registration_path %>
+					</li>
+				<% end %>
+			</ul>
+		</header>
+		<main class="w-full h-full max-w-2xl mx-auto">
+			<div class="flash">
+				<div class="notice"><%= notice %></div>
+				<div class="alert"><%= alert %></div>
+			</div>
+			<%= yield %>
+		</main>
+  </body>
+</html>
